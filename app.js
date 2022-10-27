@@ -1,73 +1,98 @@
 // FUNCTIONS
 function welcomeUser1(name) {
-    console.log(`Hello ${name}`)
+  console.log(`Hello ${name}`);
 }
-welcomeUser1('Chase')
+welcomeUser1("Chase");
 // ARROW FUNCTION
 const welcomeUser2 = (name) => {
-    console.log(`Hello ${name}`)
-}
-welcomeUser2('Chase')
+  console.log(`Hello ${name}`);
+};
+welcomeUser2("Chase");
 
 // ARRAYS
-let arr = [20, 30, 40, 50, 100]
+let arr = [20, 30, 40, 50, 100];
 // ADD ELEMENT
-arr.push(200)
+arr.push(200);
 
 // FILTERS
 let newArr1 = arr.filter((element) => {
-    if (element < 50) {
-        return true;
-    }
-})
+  if (element < 50) {
+    return true;
+  }
+});
 // SHORTHAND FOR ONLY ONE VAR INPUT
-let newArr2 = arr.filter(element => element < 50)
+let newArr2 = arr.filter((element) => element < 50);
 
 // MAPS
 let newArr3 = arr.map((element) => {
-    return element + 5
-})
+  return element + 5;
+});
 // SHORTHAND FOR ONLY ONE VAR INPUT
-let newArr4 = arr.map(element => element + 5)
+let newArr4 = arr.map((element) => element + 5);
 
 // OBJECTS
 let users = [
-    {
-        username: 'username',
-        email: 'test123@mail.com',
-        password: 'password1',
-        firstName: 'Chase',
-        lastName: 'Swick'
-    }
+  {
+    username: "username",
+    email: "test123@mail.com",
+    password: "password1",
+    firstName: "Chase",
+    lastName: "Swick",
+  },
 ];
-console.log("Hello " + users[0].firstName)
+console.log("Hello " + users[0].firstName);
 // SAMPLE LOGIN
-function login (email, password) {
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].email === email) {
-            if (users[i].password === password) {
-                console.log('Successful login')
-            }
-            else {
-                console.log('Incorrect password')
-            }
-            return;
-        }
+function login(email, password) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].email === email) {
+      if (users[i].password === password) {
+        console.log("Successful login");
+      } else {
+        console.log("Incorrect password");
+      }
+      return;
     }
+  }
 }
 // SAMPLE REGISTER
-function register (user) {
-    users.push(user)
+function register(user) {
+  users.push(user);
 }
 
 // DOCUMENT OBJECT MODEL
-console.log(document.querySelector('.title'))
-console.log(document.getElementById('title'))
+console.log(document.querySelector(".title"));
+console.log(document.getElementById("title"));
 // ALTER HTML
-document.querySelector('.title').innerHTML = 'New text'
+document.querySelector(".title").innerHTML = "New text";
 // ALTER CSS
-document.querySelector('.title').style.fontSize = '36px'
+document.querySelector(".title").style.fontSize = "36px";
 // SAMPLE FUNCTION
 function changeToRed() {
-    document.querySelector('.title').style.color = 'red'
+  document.querySelector(".title").style.color = "red";
 }
+
+// PROMISES
+// THEN
+const emailRef = document.querySelector(".email");
+
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    emailRef.innerHTML = data.email;
+  });
+// ASYNC/AWAIT
+async function main() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users/1")
+    const data = await response.json()
+    emailRef.innerHTML = data.email;
+}
+main();
+// CREATE PROMISE
+function getSubscription() {
+    return new Promise((resolve, reject) => {
+        resolve("Subscribed")
+    })
+}
+getSubscription().then(response => console.log(response))
